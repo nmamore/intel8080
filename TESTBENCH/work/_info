@@ -1,0 +1,187 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/work/PIC24/TESTBENCH
+vintel8080_top
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+DXx4 work 21 intel8080_top_sv_unit 0 22 zP=NE5WY71VMz2R`kG^Sc2
+Z1 !s110 1673217423
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 hZKGhfdHVZ4Voe@SQfQC>0
+I79U0`_hJg2^EiMN54l0U43
+!s105 intel8080_top_sv_unit
+S1
+Z3 dC:/work/intel8080/TESTBENCH
+Z4 w1673215250
+Z5 8C:/work/intel8080/RTL/intel8080_top.sv
+Z6 FC:/work/intel8080/RTL/intel8080_top.sv
+!i122 24
+L0 28 265
+Z7 OV;L;2020.1;71
+31
+Z8 !s108 1673217423.000000
+Z9 !s107 C:/work/intel8080/RTL/intel8080_top.sv|
+Z10 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/work/intel8080/RTL/intel8080_top.sv|
+!i113 1
+Z11 o-work work -sv
+Z12 tCvgOpt 0
+Xintel8080_top_sv_unit
+R0
+R1
+VzP=NE5WY71VMz2R`kG^Sc2
+r1
+!s85 0
+!i10b 1
+!s100 RUND2@PjF>NUM=ll24_NM2
+IzP=NE5WY71VMz2R`kG^Sc2
+!i103 1
+S1
+R3
+R4
+R5
+R6
+!i122 24
+L0 11 0
+R7
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+vlatch_16bit
+R0
+R1
+!i10b 1
+!s100 o7TC`1XbWWAUEBH5ZfMOC2
+Z13 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I_OzeU<9c>EOm6gXHPJLaI2
+R2
+S1
+R3
+w1673112725
+8C:/work/intel8080/RTL/latch_16bit.sv
+FC:/work/intel8080/RTL/latch_16bit.sv
+!i122 26
+L0 10 29
+R7
+r1
+!s85 0
+31
+R8
+!s107 C:/work/intel8080/RTL/latch_16bit.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/work/intel8080/RTL/latch_16bit.sv|
+!i113 1
+R11
+R12
+vprogram_counter
+R0
+R1
+!i10b 1
+!s100 80Gl5F?eg3ITc?YhDj5OC0
+R13
+IgLCQ4=T6`Dhgf4_iFM^OM2
+R2
+S1
+R3
+w1673217225
+8C:/work/intel8080/RTL/program_counter.sv
+FC:/work/intel8080/RTL/program_counter.sv
+!i122 27
+L0 10 96
+R7
+r1
+!s85 0
+31
+R8
+!s107 C:/work/intel8080/RTL/program_counter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/work/intel8080/RTL/program_counter.sv|
+!i113 1
+R11
+R12
+vreg_8bit
+R0
+Z14 !s110 1673217424
+!i10b 1
+!s100 clU;C9HmYJ_ALF6OkX_;B2
+R13
+ICnZ]0e3fk]cUZlE<ag08G1
+R2
+S1
+R3
+w1672885160
+8C:/work/intel8080/RTL/reg_8bit.sv
+FC:/work/intel8080/RTL/reg_8bit.sv
+!i122 28
+L0 10 31
+R7
+r1
+!s85 0
+31
+Z15 !s108 1673217424.000000
+!s107 C:/work/intel8080/RTL/reg_8bit.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/work/intel8080/RTL/reg_8bit.sv|
+!i113 1
+R11
+R12
+vstack_pointer
+R0
+R14
+!i10b 1
+!s100 M[kFoEQM3YTjf6ZMEXK:k0
+R13
+INDmjU:NPzeMS<Z<oeUJh?1
+R2
+S1
+R3
+w1673217406
+8C:/work/intel8080/RTL/stack_pointer.sv
+FC:/work/intel8080/RTL/stack_pointer.sv
+!i122 29
+L0 10 104
+R7
+r1
+!s85 0
+31
+R15
+!s107 C:/work/intel8080/RTL/stack_pointer.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/work/intel8080/RTL/stack_pointer.sv|
+!i113 1
+R11
+R12
+vtb_intel8080_top
+R0
+!s110 1673217422
+!i10b 1
+!s100 K9;Fj[B:E]z<E<oPUY?CV1
+R13
+IkbL1<6cP5mmzBa@m:zfgQ0
+R2
+S1
+R3
+w1672697753
+8C:/work/intel8080/TESTBENCH/tb_intel8080_top.sv
+FC:/work/intel8080/TESTBENCH/tb_intel8080_top.sv
+!i122 23
+L0 10 42
+R7
+r1
+!s85 0
+31
+!s108 1673217422.000000
+!s107 C:/work/intel8080/TESTBENCH/tb_intel8080_top.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/work/intel8080/TESTBENCH/tb_intel8080_top.sv|
+!i113 1
+R11
+R12

@@ -30,7 +30,7 @@ always_ff @ (posedge clk50M_i or negedge rst_ni) begin
     if (!rst_ni) begin
         latch_dat <= 8'h00;
     end
-    else if (ff_wr) begin
+    else if (latch_wr) begin
         latch_dat <= data_d;
     end
 end

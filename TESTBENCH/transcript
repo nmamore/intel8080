@@ -1,0 +1,59 @@
+# Compile of intel8080_top.sv failed with 2 errors.
+# Compile of intel8080_top.sv failed with 2 errors.
+# Compile of intel8080_top.sv failed with 2 errors.
+# Compile of intel8080_top.sv failed with 2 errors.
+# Compile of tb_intel8080_top.sv was successful.
+# Compile of intel8080_top.sv failed with 2 errors.
+# 2 compiles, 1 failed with 2 errors.
+# Compile of intel8080_top.sv failed with 2 errors.
+# Compile of intel8080_top.sv failed with 4 errors.
+# Compile of intel8080_top.sv failed with 5 errors.
+# Compile of intel8080_top.sv failed with 4 errors.
+# Compile of intel8080_top.sv failed with 13 errors.
+# Compile of intel8080_top.sv failed with 15 errors.
+# Compile of intel8080_top.sv failed with 14 errors.
+# Compile of intel8080_top.sv failed with 1 errors.
+# Compile of intel8080_top.sv failed with 20 errors.
+# Compile of intel8080_top.sv failed with 1 errors.
+# Compile of intel8080_top.sv was successful.
+# Compile of tb_intel8080_top.sv was successful.
+# Compile of intel8080_top.sv was successful.
+# Compile of latch_8bit.sv failed with 1 errors.
+# Compile of latch_16bit.sv was successful.
+# Compile of program_counter.sv failed with 1 errors.
+# Compile of reg_8bit.sv was successful.
+# Compile of stack_pointer.sv failed with 1 errors.
+# 7 compiles, 3 failed with 3 errors.
+# Compile of latch_8bit.sv was successful.
+# Compile of program_counter.sv failed with 4 errors.
+# Compile of program_counter.sv failed with 4 errors.
+# Compile of program_counter.sv failed with 3 errors.
+# Compile of program_counter.sv failed with 1 errors.
+# Compile of program_counter.sv was successful.
+# Compile of stack_pointer.sv failed with 1 errors.
+# Compile of tb_intel8080_top.sv was successful.
+# Compile of intel8080_top.sv was successful.
+# Compile of latch_8bit.sv was successful.
+# Compile of latch_16bit.sv was successful.
+# Compile of program_counter.sv was successful.
+# Compile of reg_8bit.sv was successful.
+# Compile of stack_pointer.sv failed with 8 errors.
+# 7 compiles, 1 failed with 8 errors.
+# Compile of tb_intel8080_top.sv was successful.
+# Compile of intel8080_top.sv was successful.
+# Compile of latch_8bit.sv was successful.
+# Compile of latch_16bit.sv was successful.
+# Compile of program_counter.sv was successful.
+# Compile of reg_8bit.sv was successful.
+# Compile of stack_pointer.sv failed with 2 errors.
+# 7 compiles, 1 failed with 2 errors.
+# Compile of stack_pointer.sv failed with 2 errors.
+# Compile of stack_pointer.sv was successful.
+# Compile of tb_intel8080_top.sv was successful.
+# Compile of intel8080_top.sv was successful.
+# Compile of latch_8bit.sv was successful.
+# Compile of latch_16bit.sv was successful.
+# Compile of program_counter.sv was successful.
+# Compile of reg_8bit.sv was successful.
+# Compile of stack_pointer.sv was successful.
+# 7 compiles, 0 failed with no errors.

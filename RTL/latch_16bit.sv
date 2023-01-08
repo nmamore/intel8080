@@ -7,7 +7,7 @@
 
 `timescale 1ns / 100ps
 
-module reg_8bit (
+module latch_16bit (
     input  logic        clk50M_i,
     input  logic        rst_ni,
                         
@@ -23,7 +23,7 @@ logic [15:0] latch_dat;
 //Sets the output to the stored internal data if FF is selected
 //Otherwise go high-impedance
 assign data_q = (latch_rd) ? latch_dat:
-                          16'hzzzz;
+                             16'hzzzz;
 
 //FF for storing data on the input
 always_ff @ (posedge clk50M_i or negedge rst_ni) begin

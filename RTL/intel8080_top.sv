@@ -7,19 +7,23 @@
 
 `timescale 1ns / 100ps
 
-`define B_REG = 3'b000;
-`define C_REG = 3'b001;
-`define D_REG = 3'b010;
-`define E_REG = 3'b011;
-`define H_REG = 3'b100;
-`define L_REG = 3'b101;
-`define A_REG = 3'b111;
+//Selection for 8 bit access
+localparam B_REG_8 =  4'b0000;
+localparam C_REG_8 =  4'b0001;
+localparam D_REG_8 =  4'b0010;
+localparam E_REG_8 =  4'b0011;
+localparam H_REG_8 =  4'b0100;
+localparam L_REG_8 =  4'b0101;
+localparam A_REG_8 =  4'b0111;
+localparam SP_REG_8 = 4'b1000;
+localparam PC_REG_8 = 4'b1001;
 
-`define BC_REG = 3'b000;
-`define DE_REG = 3'b001;
-`define HL_REG = 3'b010;
-`define SP_REG = 3'b011;
-`define PC_REG = 3'b100;
+//Selection for 16 bit access
+localparam BC_REG_16 = 3'b000;
+localparam DE_REG_16 = 3'b001;
+localparam HL_REG_16 = 3'b010;
+localparam SP_REG_16 = 3'b011;
+localparam PC_REG_16 = 3'b100;
 
 module intel8080_top
 (
@@ -34,114 +38,156 @@ logic [15:0] address_bus;
 
 logic [15:0] addr_latch;
 
-//Control signals
+//PC Signals
 logic pc_load;
 logic pc_inc;
+logic pc_rd;
 
+logic [15:0] pc_out;
+
+//SP Signals
+logic sp_load;
+logic sp_inc;
+logic sp_dec;
+logic sp_rd;
+
+logic [15:0] sp_out;
+
+//Register Signals
 logic reg_write;
 logic reg_read;
 
-logic [2:0] reg8_sel;
-logic [1:0] reg16_sel;
+logic [3:0] reg8_sel;
+logic [2:0] reg16_sel;
 
-//Register Signals
-logic [6:0] mux_write;
-logic [6:0] mux_read;
+logic [8:0] mux_write;
+logic [8:0] mux_read;
 
+//A Register
 logic a_reg_wr;
 logic a_reg_rd;
 logic [7:0] a_out;
 
+//B Register
 logic b_reg_wr;
 logic b_reg_rd;
 logic [7:0] b_out;
 
+//C Register
 logic c_reg_wr;
 logic c_reg_rd;
 logic [7:0] c_out;
 
+//BC Register
 logic [15:0] bc_out;
 
+//D Register
 logic d_reg_wr;
 logic d_reg_rd;
 logic [7:0] d_out;
 
+//E Register
 logic e_reg_wr;
 logic e_reg_rd;
 logic [7:0] e_out;
 
+//DE Register
 logic [15:0] de_out;
 
+//H Register
 logic h_reg_wr;
 logic h_reg_rd;
 logic [7:0] h_out;
 
+//L Register
 logic l_reg_wr;
 logic l_reg_rd;
 logic [7:0] l_out;
 
+//HL Register
 logic [15:0] hl_out;
 
-logic [15:0] sp_out;
+assign a_reg_wr = mux_write[8];
+assign b_reg_wr = mux_write[7];
+assign c_reg_wr = mux_write[6];
+assign d_reg_wr = mux_write[5];
+assign e_reg_wr = mux_write[4];
+assign h_reg_wr = mux_write[3];
+assign l_reg_wr = mux_write[2];
+assign sp_load  = mux_write[1];
+assign pc_load  = mux_write[0];
 
-logic [15:0] pc_out;
-
-mux_write = {a_reg_wr, b_reg_wr, c_reg_wr, d_reg_wr, e_reg_wr, h_reg_wr, l_reg_wr};
-mux_read  = {a_reg_rd, b_reg_rd, c_reg_rd, d_reg_rd, e_reg_rd, h_reg_rd, l_reg_rd};
+assign a_reg_rd = mux_read[8];
+assign b_reg_rd = mux_read[7];
+assign c_reg_rd = mux_read[6];
+assign d_reg_rd = mux_read[5];
+assign e_reg_rd = mux_read[4];
+assign h_reg_rd = mux_read[3];
+assign l_reg_rd = mux_read[2];
+assign sp_rd    = mux_read[1];
+assign pc_rd    = mux_read[0];
 
 always_comb begin
-    case (reg8_sel) begin
-        A_REG: begin
-            mux_write = {reg_write, 6'b000000};
-            mux_read  = {reg_read,  6'b000000};
+    case (reg8_sel)
+        A_REG_8: begin
+            mux_write = {reg_write, 8'b000000};
+            mux_read  = {reg_read,  8'b000000};
         end
-        B_REG: begin
-            mux_write = {1'b0, reg_write, 5'b00000};
-            mux_read  = {1'b0, reg_read,  5'b00000};
+        B_REG_8: begin
+            mux_write = {1'b0, reg_write, 7'b0000000};
+            mux_read  = {1'b0, reg_read,  7'b0000000};
         end
-        C_REG: begin
-            mux_write = {2'b00, reg_write, 4'b0000};
-            mux_read  = {2'b00, reg_read,  4'b0000};
+        C_REG_8: begin
+            mux_write = {2'b00, reg_write, 6'b000000};
+            mux_read  = {2'b00, reg_read,  6'b000000};
         end
-        D_REG: begin
-            mux_write = {3'b000, reg_write, 3'b000};
-            mux_read  = {3'b000, reg_read,  3'b000};
+        D_REG_8: begin
+            mux_write = {3'b000, reg_write, 5'b00000};
+            mux_read  = {3'b000, reg_read,  5'b00000};
         end
-        E_REG: begin
-            mux_write = {4'b0000, reg_write, 2'b00};
-            mux_read  = {4'b0000, reg_read,  2'b00};
+        E_REG_8: begin
+            mux_write = {4'b0000, reg_write, 4'b0000};
+            mux_read  = {4'b0000, reg_read,  4'b0000};
         end
-        H_REG: begin
-            mux_write = {5'b00000, reg_write, 1'b0};
-            mux_read  = {5'b00000, reg_read,  1'b0};
+        H_REG_8: begin
+            mux_write = {5'b00000, reg_write, 3'b000};
+            mux_read  = {5'b00000, reg_read,  3'b000};
         end
-        L_REG: begin
-            mux_write = {6'b000000, reg_write};
-            mux_read  = {6'b000000, reg_read};
+        L_REG_8: begin
+            mux_write = {6'b000000, reg_write, 2'b00};
+            mux_read  = {6'b000000, reg_read,  2'b00};
+        end
+        SP_REG_8: begin
+            mux_write = {7'b0000000, reg_write, 1'b0};
+            mux_read  = {7'b0000000, reg_read,  1'b0};
+        end
+        PC_REG_8: begin
+            mux_write = {8'b00000000, reg_write};
+            mux_read  = {8'b00000000, reg_read};
         end
         default: begin
-            mux_write = {7'b0000000};
-            mux_read  = {7'b0000000};
+            mux_write = {9'b000000000};
+            mux_read  = {9'b000000000};
         end
     endcase
 end
 
 //Address Latch select
 always_comb begin
-    case (reg16_sel) begin
-        BC_REG: begin
+    case (reg16_sel)
+        BC_REG_16: begin
             addr_latch = bc_out;
         end
-        DE_REG: begin
+        DE_REG_16: begin
             addr_latch = de_out;
         end
-        HL_REG: begin
+        HL_REG_16: begin
             addr_latch = hl_out;
         end
-        SP_REG: begin
+        SP_REG_16: begin
             addr_latch = sp_out;
         end
-        PC_REG: begin
+        PC_REG_16: begin
             addr_latch = pc_out;
         end
         default: begin
@@ -150,16 +196,37 @@ always_comb begin
     endcase
 end
 
-program_counter i_program_counter (
+latch_16bit address_latch (
     .clk50M_i(clk50M_i),
     .rst_ni  (rst_ni),
-    .load_i  (pc_load),
-    .inc_i   (pc_inc),
-    .addr_i  (data_bus),
-    .addr_o  (pc_out)
+    .latch_rd(latch_rd),
+    .latch_wr(latch_wr),
+    .data_d  (addr_latch),
+    .data_q  (address_bus)
 );
 
-reg_8bit b_reg (
+program_counter i_program_counter (
+    .clk50M_i (clk50M_i),
+    .rst_ni   (rst_ni),
+    .load_i   (pc_load),
+    .inc_i    (pc_inc),
+    .out_i    (pc_rd),
+    .pc_dat_io(data_bus),
+    .pc_addr_o(pc_out)
+);
+
+stack_pointer i_stack_pointer (
+    .clk50M_i (clk50M_i),
+    .rst_ni   (rst_ni),
+    .inc_i    (sp_inc),
+    .dec_i    (sp_dec),
+    .load_i   (sp_load),
+    .out_i    (sp_rd),
+    .sp_dat_io(data_bus),
+    .sp_addr_o(sp_out)
+);
+
+reg_8bit a_reg (
     .clk50M_i(clk50M_i),
     .rst_ni  (rst_ni),
     .ff_rd   (a_reg_rd),
