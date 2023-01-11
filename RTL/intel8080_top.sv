@@ -53,9 +53,16 @@ logic sp_rd;
 
 logic [15:0] sp_out;
 
+//ALU Signals
+logic [7:0] alu_a;
+logic [7:0] alu_temp;
+
 //Register Signals
 logic reg_write;
 logic reg_read;
+logic alu_wr;
+logic alu_flag_wr;
+logic [3:0] alu_sel;
 
 logic [3:0] reg8_sel;
 logic [2:0] reg16_sel;
@@ -63,10 +70,24 @@ logic [2:0] reg16_sel;
 logic [8:0] mux_write;
 logic [8:0] mux_read;
 
+//Instruction Register
+logic ir_rd;
+logic ir_wr;
+logic [7:0] ir_dat;
+
 //A Register
 logic a_reg_wr;
 logic a_reg_rd;
 logic [7:0] a_out;
+
+//A Latch
+logic a_latch_rd;
+logic a_latch_wr;
+
+//Temp Reg
+logic temp_reg_rd;
+logic temp_reg_wr;
+logic [7:0] temp_out;
 
 //B Register
 logic b_reg_wr;
@@ -196,6 +217,16 @@ always_comb begin
     endcase
 end
 
+alu i_alu (
+    .a_dat_i   (alu_a),
+    .b_dat_i   (temp_out),
+    .flag_out_i(alu_flag_wr),
+    .alu_out_i (alu_wr),
+    .alu_sel_i (alu_sel),
+    .flag_reg  (data_bus),
+    .alu_dat_o (data_bus)
+);
+
 latch_16bit address_latch (
     .clk50M_i(clk50M_i),
     .rst_ni  (rst_ni),
@@ -203,6 +234,15 @@ latch_16bit address_latch (
     .latch_wr(latch_wr),
     .data_d  (addr_latch),
     .data_q  (address_bus)
+);
+
+reg_8bit instruction_reg (
+    .clk50M_i(clk50M_i),
+    .rst_ni  (rst_ni),
+    .ff_rd   (ir_rd),
+    .ff_wr   (ir_wr),
+    .bus_o   (ir_dat),
+    .bus_io  (data_bus)
 );
 
 program_counter i_program_counter (
@@ -232,6 +272,24 @@ reg_8bit a_reg (
     .ff_rd   (a_reg_rd),
     .ff_wr   (a_reg_wr),
     .bus_o   (a_out),
+    .bus_io  (data_bus)
+);
+
+latch_8bit a_latch (
+    .clk50M_i(clk50M_i),
+    .rst_ni  (rst_ni),
+    .latch_rd(a_latch_rd),
+    .latch_wr(a_latch_wr),
+    .data_d  (a_out),
+    .data_q  (alu_a)
+);
+
+reg_8bit temp_reg (
+    .clk50M_i(clk50M_i),
+    .rst_ni  (rst_ni),
+    .ff_rd   (temp_reg_rd),
+    .ff_wr   (temp_reg_wr),
+    .bus_o   (temp_out),
     .bus_io  (data_bus)
 );
 

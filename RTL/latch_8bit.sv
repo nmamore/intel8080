@@ -7,7 +7,7 @@
 
 `timescale 1ns / 100ps
 
-module reg_8bit (
+module latch_8bit (
     input  logic       clk50M_i,
     input  logic       rst_ni,
                         
